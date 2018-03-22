@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: A thumbnail image creator
+Resources:
+  ResizeImage:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs6.10
+      Handler: ResizeImage.handler
+      CodeUri: .
+      Timeout: 30
+  ResizeImageApi:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: ResizeImage.handler
+      Runtime: nodejs6.10
+      Timeout: 30
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /ResizeImage
+            Method: any

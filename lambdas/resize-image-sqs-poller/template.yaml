@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: An sqs queue poller
+Resources:
+  ResizeImageSQSPoller:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs6.10
+      Handler: ResizeImageSQSPoller.handler
+      CodeUri: .
+      Timeout: 30
+      Environment:
+        Variables:
+          START_QUEUE_URL:
+          VISIBILITY_TIMEOUT:
+          MAX_NUNMBER_OF_MESSAGES:
+          QUEUE_READERS:
+  ResizeImageSQSPollerApi:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: ResizeImageSQSPoller.handler
+      Runtime: nodejs6.10
+      Timeout: 30
+      Environment:
+        Variables:
+          START_QUEUE_URL:
+          VISIBILITY_TIMEOUT:
+          MAX_NUNMBER_OF_MESSAGES:
+          QUEUE_READERS:
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /ResizeImageSQSPoller
+            Method: any

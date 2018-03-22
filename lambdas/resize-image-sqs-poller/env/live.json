@@ -1,0 +1,8 @@
+{
+    "ResizeImageSQSPoller": {
+        "QUEUE_READERS":"2",
+        "MAX_NUNMBER_OF_MESSAGES":"2",
+        "VISIBILITY_TIMEOUT":"10",
+        "START_QUEUE_URL":"https://sqs.eu-west-1.amazonaws.com/293805382201/image-resize-finish"
+    }
+}
