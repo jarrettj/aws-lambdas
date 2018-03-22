@@ -1,0 +1,9 @@
+nbproject
+.idea/*
+logs
+tests
+tmp
+.vagrant
+node_modules
+
+docker/env/*.yml

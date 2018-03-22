@@ -1,0 +1,24 @@
+# Base compose file. Used for local development
+version: '2'
+services:
+  # Zeppelin
+  zeppelin:
+    container_name: zeppelin
+    build: docker/application/zeppelin
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    env_file:
+      - docker/env/environment.aws.development.yml
+    environment:
+      - VIRTUAL_HOST=app.zeppelin.docker
+      - VIRTUAL_PORT=8080
+    volumes:
+#      - zeppelin:/zeppelin/logs
+#      - zeppelin-storage:/zeppelin/notebook
+#      - zeppelin:/data
+      - zeppelin-storage:/opt/zeppelin
+# Storage shared volume
+volumes:
+  zeppelin-storage:
+    driver: local
